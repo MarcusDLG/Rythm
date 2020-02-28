@@ -97,25 +97,60 @@ namespace Rythm
     {
       DisplaySigned();
       Console.WriteLine("What band would you like to produce an album for today? Please enter the band id from the list above!");
-      var userChoice = int.Parse(Console.ReadLine());
+      var bandId = int.Parse(Console.ReadLine());
       Console.WriteLine($"What is the title for the album?");
       var title = Console.ReadLine();
-      //   var isExplicit = tryParse(Console.ReadLine())
-      Console.WriteLine("When was the release date?");
-      //   var releaseDate = 
-      Console.WriteLine("What songs are on the album? Please separate by commas and then press enter!");
-      //   var songs = 
-
-
-      db.Bands.Add(new Album
+      Console.WriteLine("Does it have explicit content, yes or no?");
+      bool explicitContent = false;
+      var explicitContentQ = Console.ReadLine().ToLower();
+      if (explicitContentQ == "yes")
       {
+        explicitContent = true;
+      }
+
+      var album = new Album
+      {
+        BandId = bandId,
         Title = title,
-        IsExplicit = isExplicit,
-        ReleaseDate = releaseDate,
-        Songs = songs,
-        BandId = userChoice,
-      });
+        IsExplicit = explicitContent,
+        ReleaseDate = DateTime.Now
+      };
+
+      db.Albums.Add(album);
       db.SaveChanges();
+
+      var albumId = album.Id;
+
+
+      AddNewSong(albumId);
+    }
+
+
+    public static void AddNewSong(int albumId)
+    {
+      Console.WriteLine("How many songs are on the album?");
+      var songCount = int.Parse(Console.ReadLine());
+      for (var i = 0; i < songCount; i++)
+      {
+        Console.WriteLine("what is the name of the song?");
+        var title = Console.ReadLine();
+        Console.WriteLine("what are the lyrics");
+        var lyrics = Console.ReadLine();
+        Console.WriteLine("what is the length?");
+        var length = Console.ReadLine();
+        Console.WriteLine("what is the genre");
+        var genre = Console.ReadLine();
+        db.Songs.Add(new Song
+        {
+          AlbumId = albumId,
+          Title = title,
+          Lyrics = lyrics,
+          Length = length,
+          Genre = genre,
+
+        });
+        db.SaveChanges();
+      }
     }
   }
 }

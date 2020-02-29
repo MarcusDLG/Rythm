@@ -7,8 +7,22 @@ namespace Rythm
   public class BandTracker
   {
     public static DatabaseContext db { get; set; } = new DatabaseContext();
-    internal static void AddNewBand(string name, string countryOfOrigin, string numberOfMembers, string website, string style, string personOfContact, string contactPhoneNumber)
+    internal static void AddNewBand()
     {
+      Console.WriteLine("What is the name of the band that you would like to sign?");
+      var name = Console.ReadLine();
+      Console.WriteLine($"Where is {name} from? ");
+      var countryOfOrigin = Console.ReadLine();
+      Console.WriteLine($"How many people are in {name}");
+      var numberOfMembers = Console.ReadLine();
+      Console.WriteLine($"What is {name}'s website?");
+      var website = Console.ReadLine();
+      Console.WriteLine($"What style of music does {name} play?");
+      var style = Console.ReadLine();
+      Console.WriteLine("Who is the main contact for the band?");
+      var personOfContact = Console.ReadLine();
+      Console.WriteLine("What is their phone number?");
+      var contactPhoneNumber = Console.ReadLine();
       //   var db = new DatabaseContext();
       db.Bands.Add(new Band
       {
@@ -31,6 +45,8 @@ namespace Rythm
       {
         Console.WriteLine($"{b.Id}: {b.Name}");
       }
+      Console.WriteLine("Press enter to continue.");
+      Console.ReadKey();
     }
 
     public static void DisplayUnsigned()
@@ -40,6 +56,8 @@ namespace Rythm
       {
         Console.WriteLine($"{b.Id}: {b.Name}");
       }
+      Console.WriteLine("Press enter to continue.");
+      Console.ReadKey();
 
 
     }
@@ -51,6 +69,8 @@ namespace Rythm
       {
         Console.WriteLine($"{b.Id}: {b.Title} was released on {b.ReleaseDate}. ");
       }
+      Console.WriteLine("Press enter to continue.");
+      Console.ReadKey();
     }
 
     internal static void DisplaySigned()
@@ -61,6 +81,8 @@ namespace Rythm
       {
         Console.WriteLine($"{b.Id}: {b.Name}");
       }
+      Console.WriteLine("Press enter to continue.");
+      Console.ReadKey();
     }
 
     internal static void DisplaySpecific()
@@ -74,6 +96,8 @@ namespace Rythm
         Console.WriteLine($"{s.Title}: has a length of {s.Length} a genre of {s.Genre}");
         Console.WriteLine($"and has the following lyrics: {s.Lyrics}");
       }
+      Console.WriteLine("Press enter to continue.");
+      Console.ReadKey();
 
     }
 
@@ -88,6 +112,8 @@ namespace Rythm
       {
         Console.WriteLine($"{a.Title}");
       }
+      Console.WriteLine("Press enter to continue.");
+      Console.ReadKey();
 
     }
 

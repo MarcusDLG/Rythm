@@ -41,6 +41,16 @@ namespace Rythm
         Console.WriteLine($"{b.Id}: {b.Name}");
       }
 
+
+    }
+
+    internal static void DisplayAllAlbums()
+    {
+      var displayAll = db.Albums.OrderBy(Album => Album.ReleaseDate);
+      foreach (var b in displayAll)
+      {
+        Console.WriteLine($"{b.Id}: {b.Title} was released on {b.ReleaseDate}. ");
+      }
     }
 
     internal static void DisplaySigned()
@@ -53,9 +63,40 @@ namespace Rythm
       }
     }
 
-    internal static void BandToRelease()
+    internal static void DisplaySpecific()
+    {
+      DisplayAllAlbums();
+      Console.WriteLine("Which album would you like to view? Please enter the corresponding ID number!");
+      var userSpecific = int.Parse(Console.ReadLine());
+      var albumToView = db.Albums.First(a => a.Id == userSpecific);
+      var songlist = albumToView.Songs;
+      foreach (var a in songlist)
+      {
+        Console.WriteLine($"{a.Title}: has a length of {a.Length} a genre of {a.Genre}");
+        Console.WriteLine($"and has the following lyrics: {a.Lyrics}");
+      }
+      Console.WriteLine("Please press enter to continue!");
+      Console.ReadKey();
+
+    }
+
+    internal static void DisplayByBand()
     {
       DisplayAllBands();
+      Console.WriteLine("Please select the Id of the Band whose albums you'd like to view!");
+      var userChoice = int.Parse(Console.ReadLine());
+      var userChoiceS = db.Bands.FirstOrDefault(b => b.Id == userChoice);
+      var albums = userChoiceS.Albums;
+      foreach (var a in albums)
+      {
+        Console.WriteLine($"{a.Title}");
+      }
+
+    }
+
+    internal static void BandToRelease()
+    {
+      DisplaySigned();
       Console.WriteLine("What band would you like to remove? Please enter the band id from the list above!");
       var userRemove = int.Parse(Console.ReadLine());
       var bToRemove = db.Bands.FirstOrDefault(b => b.Id == userRemove);
@@ -154,3 +195,4 @@ namespace Rythm
     }
   }
 }
+

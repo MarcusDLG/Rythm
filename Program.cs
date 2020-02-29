@@ -22,7 +22,7 @@ namespace Rythm
         if (userInput == "view")
         {
           Console.WriteLine("Would you like to?");
-          Console.WriteLine("VIEW ALL, (BANDS), (ALBUMS), (SIGNED), (UNSIGNED), ALBUM (BY) BAND, (SPECIFIC) ALBUM");
+          Console.WriteLine("VIEW: All (BANDS), (SIGNED), (UNSIGNED) OR All (ALBUMS), ALBUMS (BY) BAND, (SPECIFIC) ALBUM");
           userInput = Console.ReadLine().ToLower();
           if (userInput == "bands")
           {
@@ -35,6 +35,18 @@ namespace Rythm
           if (userInput == "unsigned")
           {
             BandTracker.DisplayUnsigned();
+          }
+          if (userInput == "albums")
+          {
+            BandTracker.DisplayAllAlbums();
+          }
+          if (userInput == "by")
+          {
+            BandTracker.DisplayByBand();
+          }
+          if (userInput == "specific")
+          {
+            BandTracker.DisplaySpecific();
           }
         }
         if (userInput == "add")

@@ -163,11 +163,11 @@ namespace Rythm
       var albumId = album.Id;
 
 
-      AddNewSong(albumId);
+      AddNewSong(albumId, album);
     }
 
 
-    public static void AddNewSong(int albumId)
+    public static void AddNewSong(int albumId, Album album)
     {
       Console.WriteLine("How many songs are on the album?");
       var songCount = int.Parse(Console.ReadLine());
@@ -181,7 +181,7 @@ namespace Rythm
         var length = Console.ReadLine();
         Console.WriteLine("what is the genre");
         var genre = Console.ReadLine();
-        db.Songs.Add(new Song
+        var song = new Song()
         {
           AlbumId = albumId,
           Title = title,
@@ -189,7 +189,9 @@ namespace Rythm
           Length = length,
           Genre = genre,
 
-        });
+        };
+        album.Songs.Add(song);
+        db.Songs.Add(song);
         db.SaveChanges();
       }
     }

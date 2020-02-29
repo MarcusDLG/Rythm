@@ -66,14 +66,14 @@ namespace Rythm
     internal static void DisplaySpecific()
     {
       DisplayAllAlbums();
-      Console.WriteLine("Which album would you like to view? Please enter the corresponding ID number!");
-      var userSpecific = int.Parse(Console.ReadLine());
-      var albumToView = db.Albums.First(a => a.Id == userSpecific);
-      var songlist = albumToView.Songs;
-      foreach (var a in songlist)
+      Console.WriteLine("Please select the Id of the Album you'd like to view");
+      var userChoice = int.Parse(Console.ReadLine());
+      var albumToView = db.Albums.First(a => a.Id == userChoice);
+      var songs = albumToView.Songs;
+      foreach (var s in songs)
       {
-        Console.WriteLine($"{a.Title}: has a length of {a.Length} a genre of {a.Genre}");
-        Console.WriteLine($"and has the following lyrics: {a.Lyrics}");
+        Console.WriteLine($"{s.Title}: has a length of {s.Length} a genre of {s.Genre}");
+        Console.WriteLine($"and has the following lyrics: {s.Lyrics}");
       }
       Console.WriteLine("Please press enter to continue!");
       Console.ReadKey();

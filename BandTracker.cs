@@ -52,7 +52,8 @@ namespace Rythm
     public static void DisplayUnsigned()
     {
       var displayUnsigned = db.Bands.Where(b => b.IsSigned == false);
-      foreach (var b in displayUnsigned)
+      var orderedUnsigned = displayUnsigned.OrderBy(b => b.Id);
+      foreach (var b in orderedUnsigned)
       {
         Console.WriteLine($"{b.Id}: {b.Name}");
       }
@@ -120,7 +121,7 @@ namespace Rythm
     internal static void BandToRelease()
     {
       DisplaySigned();
-      Console.WriteLine("What band would you like to remove? Please enter the band id from the list above!");
+      Console.WriteLine("What band would you like to release? Please enter the band id from the list above!");
       var userRemove = int.Parse(Console.ReadLine());
       var bToRemove = db.Bands.FirstOrDefault(b => b.Id == userRemove);
       if (bToRemove == null)

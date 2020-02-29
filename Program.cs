@@ -17,8 +17,8 @@ namespace Rythm
         .Add("View All Albums by Release Date", () => BandTracker.DisplayAllAlbums())
         .Add("View Albums by Band", () => BandTracker.DisplayByBand())
         .Add("View Specific Album", () => BandTracker.DisplaySpecific())
-        .Add("Sub_Close", ConsoleMenu.Close)
-        .Add("Sub_Exit", () => Environment.Exit(0))
+        .Add("Back", ConsoleMenu.Close)
+        .Add("Exit", () => Environment.Exit(0))
         .Configure(config =>
         {
           config.Selector = "--> ";
@@ -33,7 +33,6 @@ namespace Rythm
         .Add("Add a Band", () => BandTracker.AddNewBand())
         .Add("Release a Band", () => BandTracker.BandToRelease())
         .Add("Resign a Band", () => BandTracker.BandToResign())
-        .Add("Produce an Album", () => BandTracker.BandToRelease())
         .Add("Produce an Album", () => BandTracker.ProduceAlbum())
         // .Add("Close", ConsoleMenu.Close)
         .Add("Exit", () => Environment.Exit(0))

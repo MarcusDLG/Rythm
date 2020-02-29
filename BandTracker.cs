@@ -68,15 +68,12 @@ namespace Rythm
       DisplayAllAlbums();
       Console.WriteLine("Please select the Id of the Album you'd like to view");
       var userChoice = int.Parse(Console.ReadLine());
-      var albumToView = db.Albums.First(a => a.Id == userChoice);
-      var songs = albumToView.Songs;
-      foreach (var s in songs)
+      var albumToView = db.Songs.Where(a => a.AlbumId == userChoice);
+      foreach (var s in albumToView)
       {
         Console.WriteLine($"{s.Title}: has a length of {s.Length} a genre of {s.Genre}");
         Console.WriteLine($"and has the following lyrics: {s.Lyrics}");
       }
-      Console.WriteLine("Please press enter to continue!");
-      Console.ReadKey();
 
     }
 
